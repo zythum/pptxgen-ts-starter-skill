@@ -2,9 +2,36 @@
 
 English | [中文](./README_CN.md)
 
-An **Agent Skill** that turns *“make me a PPT”* into a working
-[**pptxgen-ts-starter**](https://github.com/zythum/pptxgen-ts-starter) project —
-then hands off to that project's own skills.
+Install once, then just ask your agent for a deck:
+
+```bash
+npx skills add zythum/pptxgen-ts-starter-skill -g
+```
+
+> **做个 PPT，主题是 X** · **make a deck about X** · **build me a 10-slide deck on Y**
+
+Your agent scaffolds a real
+[**pptxgen-ts-starter**](https://github.com/zythum/pptxgen-ts-starter) project,
+installs its dependencies, and hands off to that project's own skills. You end up
+with an **editable, native `.pptx` built from code** — not screenshots, not HTML.
+
+## Use this skill when…
+
+- you want a presentation but would rather describe it than build it
+- the request sounds like **PPT / PowerPoint / deck / slides / 幻灯片 / 演示文稿 / 汇报材料**
+- no `pptxgen-ts-starter` project exists in the working directory yet
+- the result has to stay **editable in PowerPoint** afterwards
+
+```
+$ npx skills add zythum/pptxgen-ts-starter-skill -l
+
+Source: https://github.com/zythum/pptxgen-ts-starter-skill.git
+◇  Found 1 skill
+│    pptxgen-ts-starter
+│      Front door for building PowerPoint (.pptx) presentations as code …
+```
+
+One repo, one skill, one job — nothing else gets installed alongside it.
 
 ## What it does
 
@@ -21,21 +48,21 @@ One job: **scaffold → install → hand off.**
 It deliberately does **not** design slides. Content, layout, colour and QA live
 inside the scaffolded project — so this skill can never drift away from them.
 
-## Install
+## Install options
+
+`npx skills` prompts for the agent and scope (project or global); nothing else to
+configure.
 
 ```bash
-npx skills add zythum/pptxgen-ts-starter-skill
+npx skills add zythum/pptxgen-ts-starter-skill -g -y                    # global, auto-detect agent
+npx skills add zythum/pptxgen-ts-starter-skill -g -y -a claude-code     # global, Claude Code
+npx skills add zythum/pptxgen-ts-starter-skill -y                       # project scope
 ```
 
-Pick the agent and scope (project or global) when prompted. Nothing else to
-configure — after that, a request like *“做个 PPT”* or *“make a deck about X”*
-triggers it.
-
-Non-interactive:
+Pin a release for reproducibility:
 
 ```bash
-npx skills add zythum/pptxgen-ts-starter-skill -g -y                   # global, auto-detect agent
-npx skills add zythum/pptxgen-ts-starter-skill -g -y -a claude-code    # global, Claude Code
+npx skills add zythum/pptxgen-ts-starter-skill@v1.0.0 -g -y
 ```
 
 ## Requirements

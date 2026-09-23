@@ -2,9 +2,36 @@
 
 [English](./README.md) | 中文
 
-一个 **Agent Skill**：把「帮我做个 PPT」变成一份可运行的
-[**pptxgen-ts-starter**](https://github.com/zythum/pptxgen-ts-starter) 工程，
-然后把工作交接给那个工程自带的 skills。
+装一次，之后直接跟你的 agent 提需求：
+
+```bash
+npx skills add zythum/pptxgen-ts-starter-skill -g
+```
+
+> **做个 PPT，主题是 X** · **make a deck about X** · **做一份 10 页的 Y 介绍**
+
+agent 会脚手架出一份真实的
+[**pptxgen-ts-starter**](https://github.com/zythum/pptxgen-ts-starter) 工程、装好依赖，
+然后交接给那个工程自带的 skills。最终交付的是一份
+**由代码生成、可继续在 PowerPoint 里编辑的原生 `.pptx`** —— 不是截图，也不是 HTML。
+
+## 什么时候用
+
+- 你想要一份演示文稿，但更愿意「描述它」而不是「动手做它」
+- 需求听起来像 **PPT / PowerPoint / deck / 幻灯片 / 演示文稿 / 汇报材料**
+- 当前目录里还没有 `pptxgen-ts-starter` 工程
+- 交付物之后还得能**在 PowerPoint 里继续编辑**
+
+```
+$ npx skills add zythum/pptxgen-ts-starter-skill -l
+
+Source: https://github.com/zythum/pptxgen-ts-starter-skill.git
+◇  Found 1 skill
+│    pptxgen-ts-starter
+│      Front door for building PowerPoint (.pptx) presentations as code …
+```
+
+一个仓库、一个 skill、一件事 —— 不会顺带装进别的东西。
 
 ## 它做什么
 
@@ -21,20 +48,20 @@
 它**刻意不做版式设计**。内容、版式、配色与交付 QA 全部住在脚手架产物里 ——
 所以这个 skill 永远不会和它们脱节。
 
-## 安装
+## 安装方式
+
+`npx skills` 会提示你选择 agent 与作用域（项目级 / 全局），无需其他配置。
 
 ```bash
-npx skills add zythum/pptxgen-ts-starter-skill
+npx skills add zythum/pptxgen-ts-starter-skill -g -y                    # 全局，自动检测 agent
+npx skills add zythum/pptxgen-ts-starter-skill -g -y -a claude-code     # 全局，Claude Code
+npx skills add zythum/pptxgen-ts-starter-skill -y                       # 项目级
 ```
 
-按提示选择 agent 和作用域（项目级 / 全局）。装完无需其他配置 ——
-之后一句「做个 PPT」或「make a deck about X」就会命中它。
-
-免交互：
+固定版本（可复现）：
 
 ```bash
-npx skills add zythum/pptxgen-ts-starter-skill -g -y                   # 全局，自动检测 agent
-npx skills add zythum/pptxgen-ts-starter-skill -g -y -a claude-code    # 全局，Claude Code
+npx skills add zythum/pptxgen-ts-starter-skill@v1.0.0 -g -y
 ```
 
 ## 依赖
